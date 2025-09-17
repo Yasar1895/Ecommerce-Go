@@ -1,9 +1,15 @@
 import React from "react";
+import "./Footer.css"; // Import CSS
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white p-4 text-center">
-      &copy; {new Date().getFullYear()} ShopHub. All rights reserved.
+    <footer className="footer-container">
+      <p>© 2025 ShopHub. All rights reserved.</p>
+      <div className="footer-links">
+        <a href="/">Home</a>
+        <a href="/products">Products</a>
+        <a href="/checkout">Checkout</a>
+      </div>
     </footer>
   );
 };
