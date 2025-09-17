@@ -1,14 +1,16 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
 
-const WishlistContext = createContext();
-
-export const useWishlist = () => useContext(WishlistContext);
+export const WishlistContext = createContext();
 
 export const WishlistProvider = ({ children }) => {
-  const [wishlist, setWishlist] = useState([]);
+  const [wishlist, setWishlist] = useLocalStorage("wishlist", []);
 
   const addToWishlist = (product) => {
-    setWishlist((prev) => [...prev, product]);
+    setWishlist((prev) => {
+      if (prev.find((item) => item.id === product.id)) return prev;
+      return [...prev, product];
+    });
   };
 
   const removeFromWishlist = (id) => {
