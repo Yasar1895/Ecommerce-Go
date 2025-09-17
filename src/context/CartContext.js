@@ -1,19 +1,25 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 export const CartContext = createContext();
+
+export const useCart = () => {
+  const ctx = useContext(CartContext);
+  if (!ctx) {
+    throw new Error("useCart must be used within a CartProvider");
+  }
+  return ctx;
+};
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useLocalStorage("cart", []);
 
   const addToCart = (product) => {
     setCartItems((prev) => {
-      const existing = prev.find((item) => item.id === product.id);
+      const existing = prev.find((p) => p.id === product.id);
       if (existing) {
-        return prev.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
+        return prev.map((p) =>
+          p.id === product.id ? { ...p, quantity: (p.quantity || 1) + 1 } : p
         );
       }
       return [...prev, { ...product, quantity: 1 }];
@@ -21,12 +27,10 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeFromCart = (id) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
+    setCartItems((prev) => prev.filter((p) => p.id !== id));
   };
 
-  const clearCart = () => {
-    setCartItems([]);
-  };
+  const clearCart = () => setCartItems([]);
 
   return (
     <CartContext.Provider
