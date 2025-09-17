@@ -17,7 +17,7 @@ function App() {
         <WishlistProvider>
           <Router>
             <Header />
-            <main className="min-h-[80vh] p-4">
+            <main className="min-h-[80vh]">
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/products" element={<Products />} />
