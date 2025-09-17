@@ -1,0 +1,7 @@
+.home-banner {
+  @apply bg-gradient-to-r from-purple-500 to-pink-500 text-white p-12 text-center rounded-lg mb-8;
+}
+
+.home-products {
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6;
+}
