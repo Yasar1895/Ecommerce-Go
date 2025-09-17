@@ -1,0 +1,7 @@
+.footer-container {
+  @apply bg-gray-800 text-white p-6 text-center;
+}
+
+.footer-links a {
+  @apply mx-2 hover:text-gray-400 transition;
+}
