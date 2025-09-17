@@ -1,0 +1,15 @@
+.cart-container {
+  @apply p-6 max-w-3xl mx-auto;
+}
+
+.cart-item {
+  @apply flex justify-between items-center border-b py-2;
+}
+
+.cart-item img {
+  @apply w-16 h-16 object-cover rounded;
+}
+
+.remove-btn {
+  @apply bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition;
+}
